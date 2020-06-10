@@ -12,6 +12,7 @@ view: anonyme_dl_customers {
     sql: ${TABLE}."AGE_RANGE" ;;
   }
 
+
   dimension_group: birthdate {
     type: time
     timeframes: [
