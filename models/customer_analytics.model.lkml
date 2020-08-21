@@ -16,7 +16,11 @@ explore: anonyme_dl_customers {
     relationship: many_to_many
     sql_on: ${anonyme_dl_customers.customer_id} = ${anonyme_dl_purchases_details.customer_id} ;;
   }
-
+  join: anonyme_dl_purchases_history {
+    type: left_outer
+    relationship: many_to_many
+    sql_on: ${anonyme_dl_customers.customer_id_master} = ${anonyme_dl_purchases_history.customer_id_master} ;;
+  }
 }
 
 explore: anonyme_dl_history_mixity {}
