@@ -127,6 +127,12 @@ view: anonyme_dl_purchases_details {
     sql: ${TABLE}."LINE_AMOUNT" ;;
   }
 
+  measure: ca_mail_influence {
+    type: sum
+    sql: ${TABLE}."LINE_AMOUNT" ;;
+    filters: [with_contributive_visits : "True"]
+  }
+
   dimension: line_custom_1 {
     type: number
     sql: ${TABLE}."LINE_CUSTOM_1" ;;
