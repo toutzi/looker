@@ -32,6 +32,29 @@ view: anonyme_dl_purchases_details {
     sql: ${TABLE}."CUSTOMER_ID" ;;
   }
 
+  measure: Nbre_clients_call {
+    type: count_distinct
+    sql: ${TABLE}."CUSTOMER_ID" ;;
+    filters: [mixity: "CALL"]
+  }
+
+  measure: Nbre_clients_internet {
+    type: count_distinct
+    sql: ${TABLE}."CUSTOMER_ID" ;;
+    filters: [mixity: "INT"]
+  }
+  measure: Nbre_clients_mail {
+    type: count_distinct
+    sql: ${TABLE}."CUSTOMER_ID" ;;
+    filters: [mixity: "MAIL"]
+  }
+
+  measure: Nbre_clientss_mixtes {
+    type: count_distinct
+    sql: ${TABLE}."CUSTOMER_ID" ;;
+    filters: [mixity: "MIXTE"]
+  }
+
   dimension: customer_value {
     type: number
     sql: ${TABLE}."CUSTOMER_VALUE" ;;
@@ -127,10 +150,81 @@ view: anonyme_dl_purchases_details {
     sql: ${TABLE}."LINE_AMOUNT" ;;
   }
 
+  measure: Onboarding_CRM {
+    type: number
+    sql: ${CA_know} / ${nb_clients_actifs} ;;
+  }
+
+  measure: CA_know {
+    type: sum
+    sql: ${TABLE}."LINE_AMOUNT" ;;
+    filters: [is_known: "true"]
+  }
+
+  measure: nb_clients_actifs {
+    type: count_distinct
+    sql: ${TABLE}."CUSTOMER_ID_MASTER" ;;
+    filters: [is_active_contact: "true"]
+  }
+
+  measure: valeur_client_mixite_non_null {
+    type: number
+    sql: ${CA_mixite_non_null} / ${nb_clients_actifs_mixite_non_null} ;;
+  }
+
+  measure: CA_mixite_non_null {
+    type: sum
+    sql: ${TABLE}."LINE_AMOUNT" ;;
+    filters: [mixity: "-NULL" ]
+  }
+
+  measure: nb_clients_actifs_mixite_non_null {
+    type: count_distinct
+    sql: ${TABLE}."CUSTOMER_ID_MASTER" ;;
+    filters: [mixity: "-NULL"]
+  }
+
+  measure: frequence_d_achat_mixite_non_null {
+    type: number
+    sql: ${nbre_commandes_mixite_non_null} / ${nb_clients_actifs_mixite_non_null} ;;
+  }
+
+  measure: nbre_commandes_mixite_non_null {
+    type: count_distinct
+    sql: ${TABLE}."ORDER_ID" ;;
+    filters: [mixity: "-NULL" ]
+  }
+
+
+
   measure: ca_mail_influence {
     type: sum
     sql: ${TABLE}."LINE_AMOUNT" ;;
     filters: [with_contributive_visits: "true"]
+  }
+
+  measure: ca_call {
+    type: sum
+    sql: ${TABLE}."LINE_AMOUNT" ;;
+    filters: [mixity: "CALL"]
+  }
+
+  measure: ca_internet {
+    type: sum
+    sql: ${TABLE}."LINE_AMOUNT" ;;
+    filters: [mixity: "INT"]
+  }
+
+  measure: ca_mail {
+    type: sum
+    sql: ${TABLE}."LINE_AMOUNT" ;;
+    filters: [mixity: "MAIL"]
+  }
+
+  measure: ca_mixtes {
+    type: sum
+    sql: ${TABLE}."LINE_AMOUNT" ;;
+    filters: [mixity: "MIXTE"]
   }
 
   dimension: line_custom_1 {
@@ -196,6 +290,30 @@ view: anonyme_dl_purchases_details {
   dimension: order_id {
     type: string
     sql: ${TABLE}."ORDER_ID" ;;
+  }
+
+  measure: Nbre_commandes_call {
+    type: count_distinct
+    sql: ${TABLE}."ORDER_ID" ;;
+    filters: [mixity: "CALL"]
+  }
+
+  measure: Nbre_commandes_internet {
+    type: count_distinct
+    sql: ${TABLE}."ORDER_ID" ;;
+    filters: [mixity: "INT"]
+  }
+
+  measure: Nbre_commandes_mail {
+    type: count_distinct
+    sql: ${TABLE}."ORDER_ID" ;;
+    filters: [mixity: "MAIL"]
+  }
+
+  measure: Nbre_commandes_mixtes {
+    type: count_distinct
+    sql: ${TABLE}."ORDER_ID" ;;
+    filters: [mixity: "MIXTE"]
   }
 
   dimension: order_rank {

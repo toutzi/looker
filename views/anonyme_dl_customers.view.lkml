@@ -49,8 +49,18 @@ view: anonyme_dl_customers {
     sql: ${TABLE}."CUSTOMER_ID" ;;
   }
 
+  measure: nb_total_de_contacts {
+    type: count_distinct
+    sql: ${TABLE}."CUSTOMER_ID" ;;
+  }
+
   dimension: customer_id_master {
     type: string
+    sql: ${TABLE}."CUSTOMER_ID_MASTER" ;;
+  }
+
+  measure: nb_total_de_contacts_maitres {
+    type: count_distinct
     sql: ${TABLE}."CUSTOMER_ID_MASTER" ;;
   }
 
@@ -98,6 +108,17 @@ view: anonyme_dl_customers {
   dimension: customer_value {
     type: number
     sql: ${TABLE}."CUSTOMER_VALUE" ;;
+  }
+
+  measure: CA_total_clients {
+    type: sum
+    sql: ${TABLE}."CUSTOMER_VALUE" ;;
+  }
+
+  measure: CA_total_mixite_non_null {
+    type: sum
+    sql: ${TABLE}."CUSTOMER_VALUE" ;;
+    filters: [mixity: "-NULL"]
   }
 
   dimension: customer_value_180_days {
