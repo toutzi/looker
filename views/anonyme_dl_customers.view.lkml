@@ -54,6 +54,16 @@ view: anonyme_dl_customers {
     sql: ${TABLE}."CUSTOMER_ID_MASTER" ;;
   }
 
+  measure: Onboarding_CRM {
+    type: number
+    sql: ${nb_clients_actifs_profils_matches} / ${nb_clients_actifs} ;;
+  }
+  measure: nb_clients_actifs_profils_matches {
+    type: count_distinct
+    sql: ${TABLE}."PM_CUSTOMER_ID_MASTER" ;;
+    filters: [is_active_contact: "true"]
+  }
+
   measure: nb_clients_actifs {
     type: count_distinct
     sql: ${TABLE}."CUSTOMER_ID_MASTER" ;;
