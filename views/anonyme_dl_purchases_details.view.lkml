@@ -130,7 +130,7 @@ view: anonyme_dl_purchases_details {
   measure: ca_mail_influence {
     type: sum
     sql: ${TABLE}."LINE_AMOUNT" ;;
-    filters: [with_contributive_visits: "true"]
+    filters: [with_contributive_visits: "True"]
   }
 
   dimension: line_custom_1 {
