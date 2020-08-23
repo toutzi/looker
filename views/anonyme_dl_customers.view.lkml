@@ -57,7 +57,7 @@ view: anonyme_dl_customers {
   measure: nb_clients_actifs {
     type: count_distinct
     sql: ${TABLE}."CUSTOMER_ID_MASTER" ;;
-    filters: [is_active_contact: "TRUE"]
+    filters: [is_active_contact: "true"]
   }
 
   dimension: customer_id_with_card {
