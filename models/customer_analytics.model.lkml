@@ -13,7 +13,7 @@ persist_with: customer_analytics_default_datagroup
 explore: anonyme_dl_customers {
   join: anonyme_dl_purchases_details {
     type: left_outer
-    relationship: many_to_many
+    relationship: one_to_many
     sql_on: ${anonyme_dl_customers.customer_id} = ${anonyme_dl_purchases_details.customer_id} ;;
   }
   join: anonyme_dl_purchases_history {
