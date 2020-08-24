@@ -251,6 +251,11 @@ view: anonyme_dl_customers {
     sql: ${TABLE}."NB_BUYS" ;;
   }
 
+  measure: nb_achats_clients_periode_reference {
+    type: sum
+    sql: ${TABLE}."NB_BUYS" ;;
+  }
+
   dimension: nb_buys_in_store {
     type: number
     sql: ${TABLE}."NB_BUYS_IN_STORE" ;;

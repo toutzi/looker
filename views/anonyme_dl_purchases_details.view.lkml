@@ -150,6 +150,52 @@ view: anonyme_dl_purchases_details {
     sql: ${TABLE}."LINE_AMOUNT" ;;
   }
 
+  measure: panier_moyen_mixite_non_null {
+    type: number
+    sql: ${CA_mixite_non_null} / ${Nbre_commandes_mixite_non_null} ;;
+  }
+
+  measure: Nbre_commandes_mixite_non_null {
+    type: count_distinct
+    sql: ${TABLE}."ORDER_ID" ;;
+    filters: [mixity: "-NULL"]
+  }
+
+  measure: valeur_client {
+    type: number
+    sql: ${CA} / ${nb_clients} ;;
+  }
+
+  measure: CA {
+    type: sum
+    sql: ${TABLE}."LINE_AMOUNT" ;;
+  }
+
+  measure: frequence_d_achat {
+    type: number
+    sql: ${Nbre_commandes} / ${nb_clients} ;;
+  }
+
+  measure: panier_moyen {
+    type: number
+    sql: ${CA} / ${Nbre_commandes} ;;
+  }
+
+  measure: moyenne_des_interactions_digitales {
+    type: average
+    sql: ${nb_contributive_visits} ;;
+  }
+
+  measure: Nbre_commandes {
+    type: count_distinct
+    sql: ${TABLE}."ORDER_ID" ;;
+  }
+
+  measure: nb_clients {
+    type: count_distinct
+    sql: ${TABLE}."CUSTOMER_ID_MASTER" ;;
+  }
+
   measure: Onboarding_CRM {
     type: number
     sql: ${CA_know} / ${nb_clients_actifs} ;;
@@ -194,8 +240,6 @@ view: anonyme_dl_purchases_details {
     sql: ${TABLE}."ORDER_ID" ;;
     filters: [mixity: "-NULL" ]
   }
-
-
 
   measure: ca_mail_influence {
     type: sum
