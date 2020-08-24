@@ -18,7 +18,7 @@ explore: anonyme_dl_customers {
   }
   join: anonyme_dl_purchases_history {
     type: left_outer
-    relationship: many_to_many
+    relationship: one_to_many
     sql_on: ${anonyme_dl_customers.customer_id_master} = ${anonyme_dl_purchases_history.customer_id_master} ;;
   }
 }
