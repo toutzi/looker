@@ -59,6 +59,12 @@ view: anonyme_dl_customers {
     sql: ${TABLE}."CUSTOMER_ID_MASTER" ;;
   }
 
+  measure: nb_clients {
+    type: count_distinct
+    sql: ${TABLE}."CUSTOMER_ID_MASTER" ;;
+    filters: [mixity: "-NULL"]
+  }
+
   measure: nb_total_de_contacts_maitres {
     type: count_distinct
     sql: ${TABLE}."CUSTOMER_ID_MASTER" ;;
