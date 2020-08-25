@@ -226,7 +226,7 @@ view: anonyme_dl_purchases_details {
 
   measure: nb_clients_actifs_mixite_non_null {
     type: count_distinct
-    sql: ${TABLE}."CUSTOMER_ID_MASTER" ;;
+    sql: ${TABLE}."CUSTOMER_ID" ;;
     filters: [mixity: "-NULL"]
   }
 
