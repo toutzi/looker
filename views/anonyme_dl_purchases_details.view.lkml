@@ -268,7 +268,7 @@ view: anonyme_dl_purchases_details {
   measure: ca_mixtes {
     type: sum
     sql: ${TABLE}."LINE_AMOUNT" ;;
-    filters: [mixity: "MIXTE"]
+    filters: [mixity: "mixte"]
   }
 
   dimension: line_custom_1 {
