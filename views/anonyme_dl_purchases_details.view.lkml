@@ -52,7 +52,7 @@ view: anonyme_dl_purchases_details {
   measure: Nbre_clientss_mixtes {
     type: count_distinct
     sql: ${TABLE}."CUSTOMER_ID" ;;
-    filters: [mixity: "MIXTE"]
+    filters: [mixity: "mixte"]
   }
 
   dimension: customer_value {
