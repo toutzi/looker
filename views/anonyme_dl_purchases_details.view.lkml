@@ -357,7 +357,7 @@ view: anonyme_dl_purchases_details {
   measure: Nbre_commandes_mixtes {
     type: count_distinct
     sql: ${TABLE}."ORDER_ID" ;;
-    filters: [mixity: "MIXTE"]
+    filters: [mixity: "mixte"]
   }
 
   dimension: order_rank {
